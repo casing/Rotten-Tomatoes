@@ -10,10 +10,13 @@
 #import "MovieCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "MovieDetailViewController.h"
+#import "Constants.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *movies;
+
 @end
 
 @implementation MoviesViewController
@@ -23,7 +26,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.title = @"Movies";
+        self.title = TITLE;
     }
     return self;
 }
@@ -33,14 +36,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    NSURL *url = [NSURL URLWithString:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=dagqdghwaq3e3mxyrp7kmmj5&limit=20&country=us"];
+    NSURL *url = [NSURL URLWithString:API_KEY];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^
      (NSURLResponse *response, NSData *data, NSError *connectionError) {
          if (data != nil) {
              NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
              
-             self.movies = responseDictionary[@"movies"];
+             self.movies = responseDictionary[KEY_MOVIES];
          } else {
              NSLog(@"response: is nil");
          }
@@ -50,7 +53,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.rowHeight = 128;
-    [self.tableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MovieCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:MOVIE_CELL bundle:nil] forCellReuseIdentifier:MOVIE_CELL];
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,11 +69,11 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
+    MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:MOVIE_CELL];
     NSDictionary *movie = self.movies[indexPath.row];
-    cell.titleLabel.text = movie[@"title"];
-    cell.synopsisLabel.text = movie[@"synopsis"];
-    [cell.posterView setImageWithURL:[NSURL URLWithString:[movie valueForKeyPath:@"posters.thumbnail"]]];
+    cell.titleLabel.text = movie[KEY_TITLE];
+    cell.synopsisLabel.text = movie[KEY_SYNOPSIS];
+    [cell.posterView setImageWithURL:[NSURL URLWithString:[movie valueForKeyPath:KEY_POSTERS_THUMBNAIL]]];
     return cell;
 }
 

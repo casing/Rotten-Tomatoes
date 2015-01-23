@@ -8,6 +8,7 @@
 
 #import "MovieDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "Constants.h"
 
 @interface MovieDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -21,9 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.titleLabel.text = self.movie[@"title"];
-    self.synopsisLabel.text = self.movie[@"synopsis"];
-    [self.detailView setImageWithURL:[NSURL URLWithString:[self.movie valueForKeyPath:@"posters.detailed"]]];
+    self.titleLabel.text = self.movie[KEY_TITLE];
+    self.synopsisLabel.text = self.movie[KEY_SYNOPSIS];
+    [self.detailView setImageWithURL:[NSURL URLWithString:[self.movie valueForKeyPath:KEY_POSTERS_THUMBNAIL]]];
 }
 
 - (void)didReceiveMemoryWarning {
