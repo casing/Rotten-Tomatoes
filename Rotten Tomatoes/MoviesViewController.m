@@ -18,8 +18,10 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *networkErrorView;
 @property (nonatomic, strong) NSArray *movies;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
-- (void)updateMoviesData;
+- (void)initMoviesData;
+- (void)updateMoviesData:(id)target WithSelector:(SEL)sel;
 - (void)showNetworkError;
 - (void)hideNetworkError;
 
@@ -45,7 +47,14 @@
     self.tableView.delegate = self;
     self.tableView.rowHeight = 128;
     [self.tableView registerNib:[UINib nibWithNibName:MOVIE_CELL bundle:nil] forCellReuseIdentifier:MOVIE_CELL];
-    [self updateMoviesData];
+    
+    // Refresh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
+    // Initialize MoviesData
+    [self initMoviesData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,8 +63,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)updateMoviesData {
-    [SVProgressHUD show];
+- (void)updateMoviesData:(id)target WithSelector:(SEL)sel {
+    
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MOVIES_URL, API_KEY]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^
@@ -70,15 +79,30 @@
              NSLog(@"response: is nil");
          }
          [self.tableView reloadData];
-         [SVProgressHUD dismiss];
+         if (target != nil && sel != nil) {
+             [target performSelector:sel];
+         }
      }];
 }
 
+- (void)onRefresh {
+    
+    [self updateMoviesData:self.refreshControl WithSelector:@selector(endRefreshing)];
+}
+
+- (void)initMoviesData {
+    
+    [SVProgressHUD show];
+    [self updateMoviesData:[SVProgressHUD class] WithSelector:@selector(dismiss)];
+}
+
 - (void)showNetworkError {
+    
     self.networkErrorView.hidden = NO;
 }
 
 - (void)hideNetworkError {
+    
     self.networkErrorView.hidden = YES;
 }
 
