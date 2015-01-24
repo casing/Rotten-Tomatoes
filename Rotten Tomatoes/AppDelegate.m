@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MoviesViewController.h"
+#import "TabBarController.h"
+#import "Constants.h"
 
 @implementation AppDelegate
 
@@ -15,10 +17,31 @@
 {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    MoviesViewController *vc = [[MoviesViewController alloc] init];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
-    nvc.navigationBar.translucent = NO;
-    self.window.rootViewController = nvc;
+    TabBarController *tbc = [[TabBarController alloc] init];
+    tbc.tabBar.translucent = NO;
+    
+    // Movies ViewController
+    MoviesViewController *mvc = [[MoviesViewController alloc] init];
+    mvc.restfulUrl = [NSString stringWithFormat:@"%@%@",MOVIES_URL, API_KEY];
+    mvc.title = BOX_OFFICE_TITLE;
+    UINavigationController *mnvc = [[UINavigationController alloc] initWithRootViewController:mvc];
+    mnvc.navigationBar.translucent = NO;
+    
+    // DVD ViewController
+    MoviesViewController *dvc = [[MoviesViewController alloc] init];
+    dvc.restfulUrl = [NSString stringWithFormat:@"%@%@",DVD_URL, API_KEY];
+    dvc.title = DVD_TITLE;
+    UINavigationController *dnvc = [[UINavigationController alloc] initWithRootViewController:dvc];
+    dnvc.navigationBar.translucent = NO;
+    
+    //create an array of all view controllers that will represent the tab at the bottom
+    NSArray *myViewControllers = [[NSArray alloc] initWithObjects:
+                                  mnvc,
+                                  dnvc, nil];
+    
+    [tbc setViewControllers:myViewControllers];
+    
+    self.window.rootViewController = tbc;
     [self.window makeKeyAndVisible];
     return YES;
 }

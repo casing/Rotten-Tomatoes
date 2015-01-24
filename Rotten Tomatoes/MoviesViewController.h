@@ -10,4 +10,6 @@
 
 @interface MoviesViewController : UIViewController
 
+@property (nonatomic,strong) NSString *restfulUrl;
+
 @end

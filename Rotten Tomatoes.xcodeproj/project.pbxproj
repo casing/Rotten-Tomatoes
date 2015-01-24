@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E011B591A743512003B6DCB /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E011B571A743512003B6DCB /* TabBarController.m */; };
+		3E011B5A1A743512003B6DCB /* TabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E011B581A743512003B6DCB /* TabBarController.xib */; };
 		3E37C1651A6F539100BDA5C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E37C1641A6F539100BDA5C3 /* Foundation.framework */; };
 		3E37C1671A6F539100BDA5C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E37C1661A6F539100BDA5C3 /* CoreGraphics.framework */; };
 		3E37C1691A6F539100BDA5C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E37C1681A6F539100BDA5C3 /* UIKit.framework */; };
@@ -41,6 +43,9 @@
 
 /* Begin PBXFileReference section */
 		01A7C2F7CC57B7189AB41F0C /* Pods-Rotten Tomatoes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rotten Tomatoes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rotten Tomatoes/Pods-Rotten Tomatoes.debug.xcconfig"; sourceTree = "<group>"; };
+		3E011B561A743512003B6DCB /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		3E011B571A743512003B6DCB /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
+		3E011B581A743512003B6DCB /* TabBarController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabBarController.xib; sourceTree = "<group>"; };
 		3E37C1611A6F539100BDA5C3 /* Rotten Tomatoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rotten Tomatoes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E37C1641A6F539100BDA5C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3E37C1661A6F539100BDA5C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -147,6 +152,9 @@
 				3E3F4D511A70CDA3001AED8C /* MovieDetailViewController.h */,
 				3E3F4D521A70CDA3001AED8C /* MovieDetailViewController.m */,
 				3E3F4D531A70CDA3001AED8C /* MovieDetailViewController.xib */,
+				3E011B561A743512003B6DCB /* TabBarController.h */,
+				3E011B571A743512003B6DCB /* TabBarController.m */,
+				3E011B581A743512003B6DCB /* TabBarController.xib */,
 			);
 			path = "Rotten Tomatoes";
 			sourceTree = "<group>";
@@ -268,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E3F4D551A70CDA3001AED8C /* MovieDetailViewController.xib in Resources */,
+				3E011B5A1A743512003B6DCB /* TabBarController.xib in Resources */,
 				3E37C17D1A6F539100BDA5C3 /* Images.xcassets in Resources */,
 				3E37C1A21A6F552D00BDA5C3 /* MoviesViewController.xib in Resources */,
 				3E3F4D501A70C4D1001AED8C /* MovieCell.xib in Resources */,
@@ -323,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E011B591A743512003B6DCB /* TabBarController.m in Sources */,
 				3E37C1A11A6F552D00BDA5C3 /* MoviesViewController.m in Sources */,
 				3E37C1751A6F539100BDA5C3 /* AppDelegate.m in Sources */,
 				3E3F4D541A70CDA3001AED8C /* MovieDetailViewController.m in Sources */,

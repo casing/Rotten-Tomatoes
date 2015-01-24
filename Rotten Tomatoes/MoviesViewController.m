@@ -35,7 +35,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.title = TITLE;
     }
     return self;
 }
@@ -66,7 +65,8 @@
 
 - (void)updateMoviesData:(id)target WithSelector:(SEL)sel {
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MOVIES_URL, API_KEY]];
+    //NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MOVIES_URL, API_KEY]];
+    NSURL *url = [NSURL URLWithString:self.restfulUrl];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^
      (NSURLResponse *response, NSData *data, NSError *connectionError) {

@@ -12,7 +12,8 @@
 extern NSString * const API_KEY;
 extern NSString * const MOVIES_URL;
 extern NSString * const DVD_URL;
-extern NSString * const TITLE;
+extern NSString * const BOX_OFFICE_TITLE;
+extern NSString * const DVD_TITLE;
 extern NSString * const MOVIE_CELL;
 
 // JSON Keys
