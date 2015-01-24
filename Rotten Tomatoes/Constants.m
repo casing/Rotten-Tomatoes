@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "Constants.h"
 
-NSString * const API_KEY = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=dagqdghwaq3e3mxyrp7kmmj5&limit=20&country=us";
+NSString * const API_KEY = @"dagqdghwaq3e3mxyrp7kmmj5";
+NSString * const MOVIES_URL = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?limit=20&country=us&apikey=";
+NSString * const DVD_URL = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?limit=20&country=us&apikey=";
 NSString * const TITLE = @"Movies";
 NSString * const MOVIE_CELL = @"MovieCell";
 

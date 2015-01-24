@@ -10,6 +10,8 @@
 #define Rotten_Tomatoes_Constants_h
 
 extern NSString * const API_KEY;
+extern NSString * const MOVIES_URL;
+extern NSString * const DVD_URL;
 extern NSString * const TITLE;
 extern NSString * const MOVIE_CELL;
 
