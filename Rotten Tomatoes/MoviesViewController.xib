@@ -38,7 +38,7 @@
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.15883552299369297" green="1" blue="0.91814753534526616" alpha="1" colorSpace="calibratedRGB"/>
-            <point key="canvasLocation" x="175" y="339"/>
+            <point key="canvasLocation" x="469" y="53"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
