@@ -20,5 +20,12 @@ extern NSString * const KEY_MOVIES;
 extern NSString * const KEY_TITLE;
 extern NSString * const KEY_SYNOPSIS;
 extern NSString * const KEY_POSTERS_THUMBNAIL;
+extern NSString * const KEY_MPAA_RATING;
+extern NSString * const KEY_RUNTIME;
+extern NSString * const KEY_RATINGS_CRITICS_SCORE;
+extern NSString * const KEY_RATINGS_CRITICS_RATING;
+extern NSString * const KEY_ABRIDGED_CAST;
+extern NSString * const KEY_RELEASE_DATES_THEATER;
+extern NSString * const KEY_NAME;
 
 #endif

@@ -24,6 +24,7 @@
 - (void)updateMoviesData:(id)target WithSelector:(SEL)sel;
 - (void)showNetworkError;
 - (void)hideNetworkError;
+- (NSString*)getAuthorsString:(NSArray*)actors;
 
 @end
 
@@ -45,7 +46,7 @@
     // Do any additional setup after loading the view from its nib.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.rowHeight = 128;
+    self.tableView.rowHeight = 100;
     [self.tableView registerNib:[UINib nibWithNibName:MOVIE_CELL bundle:nil] forCellReuseIdentifier:MOVIE_CELL];
     
     // Refresh control
@@ -111,12 +112,27 @@
     return self.movies.count;
 }
 
+- (NSString*)getAuthorsString:(NSArray *)actors {
+    NSMutableString *label = [[NSMutableString alloc] init];
+    if (actors.count > 0) {
+        if (actors.count > 2) {
+            [label appendString:[NSString stringWithFormat:@"%@, %@", actors[0][KEY_NAME], actors[1][KEY_NAME]]];
+        } else {
+            [label appendString:actors[0][KEY_NAME]];
+        }
+    }
+    return label;
+}
+
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:MOVIE_CELL];
     NSDictionary *movie = self.movies[indexPath.row];
     cell.titleLabel.text = movie[KEY_TITLE];
-    cell.synopsisLabel.text = movie[KEY_SYNOPSIS];
+    cell.actorsLabel.text = [self getAuthorsString:movie[KEY_ABRIDGED_CAST]];
+    cell.criticsScoreLabel.text = [NSString stringWithFormat:@"%@%%, %@", [movie valueForKeyPath:KEY_RATINGS_CRITICS_SCORE], [movie valueForKeyPath:KEY_RATINGS_CRITICS_RATING]];
+    cell.typeLabel.text = [NSString stringWithFormat:@"%@, %@ min", movie[KEY_MPAA_RATING], movie[KEY_RUNTIME]];
+    cell.releaseDateLabel.text = [NSString stringWithFormat:@"Released %@",[movie valueForKeyPath:KEY_RELEASE_DATES_THEATER]];
     [cell.posterView setImageWithURL:[NSURL URLWithString:[movie valueForKeyPath:KEY_POSTERS_THUMBNAIL]]];
     return cell;
 }
