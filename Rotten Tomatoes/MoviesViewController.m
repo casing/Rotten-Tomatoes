@@ -16,9 +16,12 @@
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *networkErrorView;
 @property (nonatomic, strong) NSArray *movies;
 
 - (void)updateMoviesData;
+- (void)showNetworkError;
+- (void)hideNetworkError;
 
 @end
 
@@ -61,12 +64,22 @@
              NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
              
              self.movies = responseDictionary[KEY_MOVIES];
+             [self hideNetworkError];
          } else {
+             [self showNetworkError];
              NSLog(@"response: is nil");
          }
          [self.tableView reloadData];
          [SVProgressHUD dismiss];
      }];
+}
+
+- (void)showNetworkError {
+    self.networkErrorView.hidden = NO;
+}
+
+- (void)hideNetworkError {
+    self.networkErrorView.hidden = YES;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

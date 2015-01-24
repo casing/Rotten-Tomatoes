@@ -17,7 +17,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     MoviesViewController *vc = [[MoviesViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
-    
+    nvc.navigationBar.translucent = NO;
     self.window.rootViewController = nvc;
     [self.window makeKeyAndVisible];
     return YES;
