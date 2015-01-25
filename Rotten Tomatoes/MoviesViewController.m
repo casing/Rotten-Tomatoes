@@ -15,13 +15,15 @@
 #import "MovieCollectionCell.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate,
-UICollectionViewDelegate, UICollectionViewDataSource>
+UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *networkErrorView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *viewTypeSegmentedControl;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) NSArray *movies;
+@property (nonatomic, strong) NSMutableArray *filteredMovies;
 @property (nonatomic, strong) UIRefreshControl *tableRefreshControl;
 @property (nonatomic, strong) UIRefreshControl *collectionRefreshControl;
 
@@ -30,6 +32,9 @@ UICollectionViewDelegate, UICollectionViewDataSource>
 - (void)showNetworkError;
 - (void)hideNetworkError;
 - (void)goToDetailsPage:(int)index;
+- (void)filterMoviesData;
+- (NSDictionary*)getMovie:(int)index;
+- (NSUInteger)getMovieDataCount;
 - (NSString*)getAuthorsString:(NSArray*)actors;
 
 @end
@@ -49,6 +54,7 @@ UICollectionViewDelegate, UICollectionViewDataSource>
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.filteredMovies = [[NSMutableArray alloc] init];
     
     // Tableview setup
     self.tableView.hidden = NO;
@@ -104,6 +110,7 @@ UICollectionViewDelegate, UICollectionViewDataSource>
              NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
              
              self.movies = responseDictionary[KEY_MOVIES];
+             [self filterMoviesData];
              [self hideNetworkError];
          } else {
              [self showNetworkError];
@@ -143,9 +150,25 @@ UICollectionViewDelegate, UICollectionViewDataSource>
     self.networkErrorView.hidden = YES;
 }
 
+- (NSUInteger)getMovieDataCount {
+    if ([self.searchBar.text length] == 0) {
+        return self.movies.count;
+    } else {
+        return self.filteredMovies.count;
+    }
+}
+
+- (NSDictionary*)getMovie:(int)index {
+    if ([self.searchBar.text length] == 0) {
+        return self.movies[index];
+    } else {
+        return self.filteredMovies[index];
+    }
+}
+
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.movies.count;
+    return [self getMovieDataCount];
 }
 
 - (NSString*)getAuthorsString:(NSArray *)actors {
@@ -169,7 +192,7 @@ UICollectionViewDelegate, UICollectionViewDataSource>
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:MOVIE_CELL];
-    NSDictionary *movie = self.movies[indexPath.row];
+    NSDictionary *movie = [self getMovie:(int)indexPath.row];
     cell.titleLabel.text = movie[KEY_TITLE];
     cell.actorsLabel.text = [self getAuthorsString:movie[KEY_ABRIDGED_CAST]];
     cell.criticsScoreLabel.text = [NSString stringWithFormat:@"%@%%, %@", [movie valueForKeyPath:KEY_RATINGS_CRITICS_SCORE], [movie valueForKeyPath:KEY_RATINGS_CRITICS_RATING]];
@@ -186,12 +209,13 @@ UICollectionViewDelegate, UICollectionViewDataSource>
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.movies.count;
+    return [self getMovieDataCount];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MovieCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieCollectionCell" forIndexPath:indexPath];
-    NSDictionary *movie = self.movies[indexPath.row];
+   
+    NSDictionary *movie = [self getMovie:(int)indexPath.row];
     cell.titleLabel.text = movie[KEY_TITLE];
     cell.descriptionLabel.text = [NSString stringWithFormat:@"%@ %@ min %@%%",
                                   movie[KEY_MPAA_RATING], movie[KEY_RUNTIME], [movie valueForKeyPath:KEY_RATINGS_CRITICS_SCORE]];
@@ -204,6 +228,31 @@ UICollectionViewDelegate, UICollectionViewDataSource>
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     [self goToDetailsPage:(int)indexPath.row];
+}
+
+- (void)filterMoviesData {
+    [self.filteredMovies removeAllObjects];
+    
+    NSLog(@"SearchBar Text: %@", self.searchBar.text);
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.title contains[c] %@", self.searchBar.text];
+    self.filteredMovies = [NSMutableArray arrayWithArray:[self.movies filteredArrayUsingPredicate:predicate]];
+}
+
+//- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+//    NSLog(@"SearchButtonClicked");
+//    [self filterMoviesData];
+//}
+//
+//- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+//    NSLog(@"TextDidEndEditing");
+//    [self filterMoviesData];
+//}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    NSLog(@"textDidChange");
+    [self filterMoviesData];
+    [self.tableView reloadData];
+    [self.collectionView reloadData];
 }
 
 @end
