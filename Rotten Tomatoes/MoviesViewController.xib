@@ -7,9 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoviesViewController">
             <connections>
+                <outlet property="collectionView" destination="CUR-57-rrW" id="DTC-UK-uAA"/>
                 <outlet property="networkErrorView" destination="saM-oz-O0s" id="NJF-0G-QPi"/>
                 <outlet property="tableView" destination="gdv-yc-t4C" id="who-N3-YUm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewTypeSegmentedControl" destination="dFk-YN-qMk" id="yhp-gh-DOa"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -17,16 +19,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gdv-yc-t4C">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </tableView>
                 <view hidden="YES" alpha="0.75" contentMode="scaleToFill" id="saM-oz-O0s">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="28"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network Error" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fpW-5G-fDn">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network Error" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fpW-5G-fDn">
                             <rect key="frame" x="109" y="2" width="103" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -36,9 +33,36 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gdv-yc-t4C">
+                    <rect key="frame" x="0.0" y="26" width="320" height="542"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" id="CUR-57-rrW">
+                    <rect key="frame" x="0.0" y="26" width="320" height="542"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="a3j-Mv-dxL">
+                        <size key="itemSize" width="155" height="220"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="dFk-YN-qMk">
+                    <rect key="frame" x="-10" y="0.0" width="342" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <segments>
+                        <segment title="List"/>
+                        <segment title="Collection"/>
+                    </segments>
+                    <connections>
+                        <action selector="viewTypeChanged:" destination="-1" eventType="valueChanged" id="cJK-UZ-3ta"/>
+                    </connections>
+                </segmentedControl>
             </subviews>
-            <color key="backgroundColor" red="0.15883552299369297" green="1" blue="0.91814753534526616" alpha="1" colorSpace="calibratedRGB"/>
-            <point key="canvasLocation" x="469" y="53"/>
+            <point key="canvasLocation" x="365" y="37"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -12,18 +12,24 @@
 #import "MovieDetailViewController.h"
 #import "Constants.h"
 #import "SVProgressHUD.h"
+#import "MovieCollectionCell.h"
 
-@interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate,
+UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *networkErrorView;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *viewTypeSegmentedControl;
 @property (nonatomic, strong) NSArray *movies;
-@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) UIRefreshControl *tableRefreshControl;
+@property (nonatomic, strong) UIRefreshControl *collectionRefreshControl;
 
 - (void)initMoviesData;
 - (void)updateMoviesData:(id)target WithSelector:(SEL)sel;
 - (void)showNetworkError;
 - (void)hideNetworkError;
+- (void)goToDetailsPage:(int)index;
 - (NSString*)getAuthorsString:(NSArray*)actors;
 
 @end
@@ -43,15 +49,29 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    // Tableview setup
+    self.tableView.hidden = NO;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.rowHeight = 100;
     [self.tableView registerNib:[UINib nibWithNibName:MOVIE_CELL bundle:nil] forCellReuseIdentifier:MOVIE_CELL];
+ 
+    // Table Refresh control
+    self.tableRefreshControl = [[UIRefreshControl alloc] init];
+    [self.tableRefreshControl addTarget:self action:@selector(onTableRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.tableRefreshControl atIndex:0];
     
-    // Refresh control
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
-    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    // Collection View Setup
+    self.collectionView.hidden = YES;
+    self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
+    [self.collectionView registerNib:[UINib nibWithNibName:@"MovieCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"MovieCollectionCell"];
+    
+    // Collection Refresh Control
+    self.collectionRefreshControl = [[UIRefreshControl alloc] init];
+    [self.collectionRefreshControl addTarget:self action:@selector(onCollectionRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.collectionView insertSubview:self.collectionRefreshControl atIndex:0];
     
     // Initialize MoviesData
     [self initMoviesData];
@@ -61,6 +81,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)viewTypeChanged:(id)sender {
+    if (self.viewTypeSegmentedControl.selectedSegmentIndex == 1) {
+        [self.tableView setHidden:YES];
+        [self.collectionView setHidden:NO];
+    } else {
+        [self.tableView setHidden:NO];
+        [self.collectionView setHidden:YES];
+    }
 }
 
 - (void)updateMoviesData:(id)target WithSelector:(SEL)sel {
@@ -80,15 +110,21 @@
              NSLog(@"response: is nil");
          }
          [self.tableView reloadData];
+         [self.collectionView reloadData];
          if (target != nil && sel != nil) {
              [target performSelector:sel];
          }
      }];
 }
 
-- (void)onRefresh {
+- (void)onTableRefresh {
     
-    [self updateMoviesData:self.refreshControl WithSelector:@selector(endRefreshing)];
+    [self updateMoviesData:self.tableRefreshControl WithSelector:@selector(endRefreshing)];
+}
+
+- (void)onCollectionRefresh {
+    
+    [self updateMoviesData:self.collectionRefreshControl WithSelector:@selector(endRefreshing)];
 }
 
 - (void)initMoviesData {
@@ -124,6 +160,12 @@
     return label;
 }
 
+- (void)goToDetailsPage:(int)index {
+    MovieDetailViewController *vc = [[MovieDetailViewController alloc] init];
+    vc.movie = self.movies[index];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:MOVIE_CELL];
@@ -140,9 +182,28 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    MovieDetailViewController *vc = [[MovieDetailViewController alloc] init];
-    vc.movie = self.movies[indexPath.row];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self goToDetailsPage:(int)indexPath.row];
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.movies.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    MovieCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieCollectionCell" forIndexPath:indexPath];
+    NSDictionary *movie = self.movies[indexPath.row];
+    cell.titleLabel.text = movie[KEY_TITLE];
+    cell.descriptionLabel.text = [NSString stringWithFormat:@"%@ %@ min %@%%",
+                                  movie[KEY_MPAA_RATING], movie[KEY_RUNTIME], [movie valueForKeyPath:KEY_RATINGS_CRITICS_SCORE]];
+    NSString *imageUrl = [movie valueForKeyPath:KEY_POSTERS_THUMBNAIL];
+    NSRange lastTmb = [imageUrl rangeOfString:@"_tmb" options:NSBackwardsSearch];
+    [cell.posterView setImageWithURL:[NSURL URLWithString:[imageUrl stringByReplacingCharactersInRange:lastTmb withString:@"_ori"]]];
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    [self goToDetailsPage:(int)indexPath.row];
 }
 
 @end
