@@ -7,8 +7,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieDetailViewController">
             <connections>
+                <outlet property="actorsLabel" destination="IZ5-Of-vDL" id="Q44-Pu-25c"/>
+                <outlet property="descriptionLabel" destination="gdF-oj-5jM" id="XZc-VP-v2v"/>
                 <outlet property="detailView" destination="TgW-Ik-kJj" id="hiM-3r-eJP"/>
-                <outlet property="synopsisLabel" destination="Ao6-4b-E0q" id="Y8i-eZ-SIL"/>
+                <outlet property="ratingsLabel" destination="6Tn-Fj-dnH" id="fjM-Ya-Y0I"/>
+                <outlet property="releaseDateLabel" destination="57k-Hl-pJk" id="C64-Wa-qcc"/>
+                <outlet property="scrollView" destination="o55-15-2cA" id="e2u-AP-8uq"/>
+                <outlet property="synopsisLabel" destination="Ao6-4b-E0q" id="Ko6-EU-h18"/>
                 <outlet property="titleLabel" destination="bJU-xg-1T3" id="wjP-O5-3Sb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -22,30 +27,59 @@
                     <rect key="frame" x="0.0" y="0.0" width="327" height="510"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <view alpha="0.59999999999999998" contentMode="scaleToFill" id="TYH-mb-pZg">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="586"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.75" contentMode="scaleToFill" id="o55-15-2cA">
+                    <rect key="frame" x="-4" y="-7" width="327" height="517"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ao6-4b-E0q">
-                            <rect key="frame" x="4" y="38" width="312" height="515"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ao6-4b-E0q">
+                            <rect key="frame" x="23" y="141" width="291" height="451"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <string key="text">From Academy Award (R)-winning filmmaker Peter Jackson comes \"The Hobbit: The Battle of the Five Armies,\" the third in a trilogy of films adapting the enduringly popular masterpiece The Hobbit, by J.R.R. Tolkien. \"The Hobbit: The Battle of the Five Armies\" brings to an epic conclusion the adventures of Bilbo Baggins, Thorin Oakenshield and the Company of Dwarves. Having reclaimed their homeland from the Dragon Smaug, the Company has unwittingly unleashed a deadly force into the world. Enraged, Smaug rains his fiery wrath down upon the defenseless men, women and children of Lake-town. Obsessed above all else with his reclaimed treasure, Thorin sacrifices friendship and honor tohoard it as Bilbo's frantic attempts to make him see reason drive the Hobbit towards a desperate and dangerous choice. But there are even greater dangers ahead. Unseen by any but the Wizard Gandalf, the great enemy Sauron has sent forth legions of Orcs in a stealth attack upon the Lonely Mountain. As darkness converges on their escalating conflict, the races of Dwarves, Elves and Men must decide - unite or be destroyed. Bilbo finds himself fighting for his life and the lives of his friends in the epic Battle of the Five Armies, as the future of Middle-earth hangs in the balance. (c) Warner Bros</string>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bJU-xg-1T3">
-                            <rect key="frame" x="4" y="8" width="304" height="22"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Hobbit: The Battle of the Five Armies" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bJU-xg-1T3">
+                            <rect key="frame" x="23" y="44" width="291" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10%, Rotten" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gdF-oj-5jM">
+                            <rect key="frame" x="23" y="60" width="291" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actors" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IZ5-Of-vDL">
+                            <rect key="frame" x="23" y="77" width="291" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PG-13, 144 min" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Tn-Fj-dnH">
+                            <rect key="frame" x="23" y="106" width="291" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Released Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="57k-Hl-pJk">
+                            <rect key="frame" x="23" y="124" width="291" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="36" y="275"/>
+            <point key="canvasLocation" x="44" y="307"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
