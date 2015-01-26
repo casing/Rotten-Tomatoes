@@ -201,7 +201,9 @@ UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate>
                                    [movie valueForKeyPath:KEY_RATINGS_CRITICS_RATING]];
     cell.typeLabel.text = [NSString stringWithFormat:@"%@, %@ min", movie[KEY_MPAA_RATING], movie[KEY_RUNTIME]];
     cell.releaseDateLabel.text = [NSString stringWithFormat:@"Released %@",[movie valueForKeyPath:KEY_RELEASE_DATES_THEATER]];
-    [cell.posterView setImageWithURL:[NSURL URLWithString:[movie valueForKeyPath:KEY_POSTERS_THUMBNAIL]] fadeDuration:2.0];
+    [cell.posterView setImageWithURL:[NSURL URLWithString:[movie valueForKeyPath:KEY_POSTERS_THUMBNAIL]]
+                  withPlaceHolderURL:nil
+                    withFadeDuration:2.0];
     
     return cell;
 }
@@ -225,7 +227,9 @@ UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate>
                                   movie[KEY_MPAA_RATING], movie[KEY_RUNTIME], [movie valueForKeyPath:KEY_RATINGS_CRITICS_SCORE]];
     NSString *imageUrl = [movie valueForKeyPath:KEY_POSTERS_THUMBNAIL];
     NSRange lastTmb = [imageUrl rangeOfString:@"_tmb" options:NSBackwardsSearch];
-    [cell.posterView setImageWithURL:[NSURL URLWithString:[imageUrl stringByReplacingCharactersInRange:lastTmb withString:@"_ori"]] fadeDuration:2.0];
+    [cell.posterView setImageWithURL:[NSURL URLWithString:[imageUrl stringByReplacingCharactersInRange:lastTmb withString:@"_ori"]]
+                  withPlaceHolderURL:[NSURL URLWithString:imageUrl]
+                    withFadeDuration:2.0];
     return cell;
 }
 

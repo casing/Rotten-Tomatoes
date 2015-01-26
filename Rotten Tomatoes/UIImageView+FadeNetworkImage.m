@@ -11,17 +11,23 @@
 
 @implementation UIImageView (FadeNetworkImage)
 
-- (void)setImageWithURL:(NSURL*)url fadeDuration:(float)duration {
+- (void)setImageWithURL:(NSURL*)url withPlaceHolderURL:(NSURL*)placeHolderUrl withFadeDuration:(float)duration {
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [self setImageWithURLRequest:request placeholderImage:nil success:
+    NSData *placeholderImageData = [NSData dataWithContentsOfURL:placeHolderUrl];
+    UIImage *placeholder = [UIImage imageWithData:placeholderImageData];
+    [self setImageWithURLRequest:request placeholderImage:placeholder success:
      ^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
          // Fade In
-         self.alpha = 0;
-         [self setImage:image];
-         [UIView animateWithDuration:duration animations:^{
-             self.alpha = 1;
-         } completion:^(BOOL finished) {
-         }];
+         if (placeholder == nil) {
+             self.alpha = 0;
+             [self setImage:image];
+             [UIView animateWithDuration:duration animations:^{
+                 self.alpha = 1;
+             } completion:^(BOOL finished) {
+             }];
+         } else {
+             [self setImage:image];
+         }
      } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
          NSLog(@"%@", [error description]);
      }];

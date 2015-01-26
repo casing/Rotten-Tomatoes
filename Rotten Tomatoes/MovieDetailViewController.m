@@ -26,7 +26,9 @@
     self.synopsisLabel.text = self.movie[KEY_SYNOPSIS];
     NSString *imageUrl = [self.movie valueForKeyPath:KEY_POSTERS_THUMBNAIL];
     NSRange lastTmb = [imageUrl rangeOfString:@"_tmb" options:NSBackwardsSearch];
-    [self.detailView setImageWithURL:[NSURL URLWithString:[imageUrl stringByReplacingCharactersInRange:lastTmb withString:@"_ori"]] fadeDuration:2.0];
+    [self.detailView setImageWithURL:[NSURL URLWithString:[imageUrl stringByReplacingCharactersInRange:lastTmb withString:@"_ori"]]
+                  withPlaceHolderURL:[NSURL URLWithString:imageUrl]
+                    withFadeDuration:2.0];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -10,6 +10,6 @@
 
 @interface UIImageView (FadeNetworkImage)
 
-- (void)setImageWithURL:(NSURL*)url fadeDuration:(float)duration;
+- (void)setImageWithURL:(NSURL*)url withPlaceHolderURL:(NSURL*)placeHolderUrl withFadeDuration:(float)duration;
 
 @end
