@@ -104,7 +104,7 @@ UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate>
     
     //NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",MOVIES_URL, API_KEY]];
     NSURL *url = [NSURL URLWithString:self.restfulUrl];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^
      (NSURLResponse *response, NSData *data, NSError *connectionError) {
          if (data != nil) {

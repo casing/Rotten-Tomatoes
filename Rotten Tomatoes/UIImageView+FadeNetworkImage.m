@@ -12,7 +12,7 @@
 @implementation UIImageView (FadeNetworkImage)
 
 - (void)setImageWithURL:(NSURL*)url withPlaceHolderURL:(NSURL*)placeHolderUrl withFadeDuration:(float)duration {
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
     NSData *placeholderImageData = [NSData dataWithContentsOfURL:placeHolderUrl];
     UIImage *placeholder = [UIImage imageWithData:placeholderImageData];
     [self setImageWithURLRequest:request placeholderImage:placeholder success:
