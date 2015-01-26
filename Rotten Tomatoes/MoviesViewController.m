@@ -9,6 +9,7 @@
 #import "MoviesViewController.h"
 #import "MovieCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "UIImageView+FadeNetworkImage.h"
 #import "MovieDetailViewController.h"
 #import "Constants.h"
 #import "SVProgressHUD.h"
@@ -195,10 +196,13 @@ UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate>
     NSDictionary *movie = [self getMovie:(int)indexPath.row];
     cell.titleLabel.text = movie[KEY_TITLE];
     cell.actorsLabel.text = [self getAuthorsString:movie[KEY_ABRIDGED_CAST]];
-    cell.criticsScoreLabel.text = [NSString stringWithFormat:@"%@%%, %@", [movie valueForKeyPath:KEY_RATINGS_CRITICS_SCORE], [movie valueForKeyPath:KEY_RATINGS_CRITICS_RATING]];
+    cell.criticsScoreLabel.text = [NSString stringWithFormat:@"%@%%, %@",
+                                   [movie valueForKeyPath:KEY_RATINGS_CRITICS_SCORE],
+                                   [movie valueForKeyPath:KEY_RATINGS_CRITICS_RATING]];
     cell.typeLabel.text = [NSString stringWithFormat:@"%@, %@ min", movie[KEY_MPAA_RATING], movie[KEY_RUNTIME]];
     cell.releaseDateLabel.text = [NSString stringWithFormat:@"Released %@",[movie valueForKeyPath:KEY_RELEASE_DATES_THEATER]];
-    [cell.posterView setImageWithURL:[NSURL URLWithString:[movie valueForKeyPath:KEY_POSTERS_THUMBNAIL]]];
+    [cell.posterView setImageWithURL:[NSURL URLWithString:[movie valueForKeyPath:KEY_POSTERS_THUMBNAIL]] fadeDuration:2.0];
+    
     return cell;
 }
 
@@ -221,7 +225,7 @@ UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate>
                                   movie[KEY_MPAA_RATING], movie[KEY_RUNTIME], [movie valueForKeyPath:KEY_RATINGS_CRITICS_SCORE]];
     NSString *imageUrl = [movie valueForKeyPath:KEY_POSTERS_THUMBNAIL];
     NSRange lastTmb = [imageUrl rangeOfString:@"_tmb" options:NSBackwardsSearch];
-    [cell.posterView setImageWithURL:[NSURL URLWithString:[imageUrl stringByReplacingCharactersInRange:lastTmb withString:@"_ori"]]];
+    [cell.posterView setImageWithURL:[NSURL URLWithString:[imageUrl stringByReplacingCharactersInRange:lastTmb withString:@"_ori"]] fadeDuration:2.0];
     return cell;
 }
 
@@ -232,8 +236,6 @@ UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate>
 
 - (void)filterMoviesData {
     [self.filteredMovies removeAllObjects];
-    
-    NSLog(@"SearchBar Text: %@", self.searchBar.text);
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.title contains[c] %@", self.searchBar.text];
     self.filteredMovies = [NSMutableArray arrayWithArray:[self.movies filteredArrayUsingPredicate:predicate]];
 }
@@ -249,7 +251,6 @@ UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate>
 //}
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    NSLog(@"textDidChange");
     [self filterMoviesData];
     [self.tableView reloadData];
     [self.collectionView reloadData];

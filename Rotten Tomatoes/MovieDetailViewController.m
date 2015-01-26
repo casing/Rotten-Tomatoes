@@ -7,7 +7,7 @@
 //
 
 #import "MovieDetailViewController.h"
-#import "UIImageView+AFNetworking.h"
+#import "UIImageView+FadeNetworkImage.h"
 #import "Constants.h"
 
 @interface MovieDetailViewController ()
@@ -26,7 +26,7 @@
     self.synopsisLabel.text = self.movie[KEY_SYNOPSIS];
     NSString *imageUrl = [self.movie valueForKeyPath:KEY_POSTERS_THUMBNAIL];
     NSRange lastTmb = [imageUrl rangeOfString:@"_tmb" options:NSBackwardsSearch];
-    [self.detailView setImageWithURL:[NSURL URLWithString:[imageUrl stringByReplacingCharactersInRange:lastTmb withString:@"_ori"]]];
+    [self.detailView setImageWithURL:[NSURL URLWithString:[imageUrl stringByReplacingCharactersInRange:lastTmb withString:@"_ori"]] fadeDuration:2.0];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -11,6 +11,7 @@
 		3E011B5A1A743512003B6DCB /* TabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E011B581A743512003B6DCB /* TabBarController.xib */; };
 		3E011B5E1A749A7B003B6DCB /* MovieCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E011B5C1A749A7B003B6DCB /* MovieCollectionCell.m */; };
 		3E011B5F1A749A7B003B6DCB /* MovieCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E011B5D1A749A7B003B6DCB /* MovieCollectionCell.xib */; };
+		3E248F571A74EAF800FBB334 /* UIImageView+FadeNetworkImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E248F561A74EAF800FBB334 /* UIImageView+FadeNetworkImage.m */; };
 		3E37C1651A6F539100BDA5C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E37C1641A6F539100BDA5C3 /* Foundation.framework */; };
 		3E37C1671A6F539100BDA5C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E37C1661A6F539100BDA5C3 /* CoreGraphics.framework */; };
 		3E37C1691A6F539100BDA5C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E37C1681A6F539100BDA5C3 /* UIKit.framework */; };
@@ -51,6 +52,8 @@
 		3E011B5B1A749A7B003B6DCB /* MovieCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieCollectionCell.h; sourceTree = "<group>"; };
 		3E011B5C1A749A7B003B6DCB /* MovieCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieCollectionCell.m; sourceTree = "<group>"; };
 		3E011B5D1A749A7B003B6DCB /* MovieCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieCollectionCell.xib; sourceTree = "<group>"; };
+		3E248F551A74EAF800FBB334 /* UIImageView+FadeNetworkImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+FadeNetworkImage.h"; sourceTree = "<group>"; };
+		3E248F561A74EAF800FBB334 /* UIImageView+FadeNetworkImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+FadeNetworkImage.m"; sourceTree = "<group>"; };
 		3E37C1611A6F539100BDA5C3 /* Rotten Tomatoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rotten Tomatoes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E37C1641A6F539100BDA5C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3E37C1661A6F539100BDA5C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -163,6 +166,8 @@
 				3E011B5B1A749A7B003B6DCB /* MovieCollectionCell.h */,
 				3E011B5C1A749A7B003B6DCB /* MovieCollectionCell.m */,
 				3E011B5D1A749A7B003B6DCB /* MovieCollectionCell.xib */,
+				3E248F551A74EAF800FBB334 /* UIImageView+FadeNetworkImage.h */,
+				3E248F561A74EAF800FBB334 /* UIImageView+FadeNetworkImage.m */,
 			);
 			path = "Rotten Tomatoes";
 			sourceTree = "<group>";
@@ -345,6 +350,7 @@
 				3E37C1A11A6F552D00BDA5C3 /* MoviesViewController.m in Sources */,
 				3E37C1751A6F539100BDA5C3 /* AppDelegate.m in Sources */,
 				3E3F4D541A70CDA3001AED8C /* MovieDetailViewController.m in Sources */,
+				3E248F571A74EAF800FBB334 /* UIImageView+FadeNetworkImage.m in Sources */,
 				3E011B5E1A749A7B003B6DCB /* MovieCollectionCell.m in Sources */,
 				3E3F4D4F1A70C4D1001AED8C /* MovieCell.m in Sources */,
 				3E37C1711A6F539100BDA5C3 /* main.m in Sources */,
