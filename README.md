@@ -26,7 +26,7 @@ Time spent: `8.5`
 - [x] Customize the navigation bar.
 
 ### Walkthrough
-[Video Walkthrough](rotten_tomatoes_app.gif)
+![Video Walkthrough](rotten_tomatoes_app.gif)
 
 Credits
 ---------
