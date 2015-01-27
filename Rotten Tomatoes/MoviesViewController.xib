@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoviesViewController">
             <connections>
                 <outlet property="collectionView" destination="CUR-57-rrW" id="DTC-UK-uAA"/>
+                <outlet property="networkErrorLabel" destination="fpW-5G-fDn" id="RZd-M2-w37"/>
                 <outlet property="networkErrorView" destination="saM-oz-O0s" id="NJF-0G-QPi"/>
                 <outlet property="searchBar" destination="4mg-vp-Kja" id="pVM-Yi-xCx"/>
                 <outlet property="tableView" destination="gdv-yc-t4C" id="who-N3-YUm"/>
@@ -20,20 +21,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view hidden="YES" alpha="0.75" contentMode="scaleToFill" id="saM-oz-O0s">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="28"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network Error" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fpW-5G-fDn">
-                            <rect key="frame" x="109" y="2" width="103" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gdv-yc-t4C">
                     <rect key="frame" x="0.0" y="72" width="320" height="496"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -72,6 +59,20 @@
                         <outlet property="delegate" destination="-1" id="uL3-xv-Zzz"/>
                     </connections>
                 </searchBar>
+                <view hidden="YES" alpha="0.75" contentMode="scaleToFill" id="saM-oz-O0s">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="28"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network Error" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fpW-5G-fDn">
+                            <rect key="frame" x="109" y="2" width="103" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <point key="canvasLocation" x="398" y="94"/>
         </view>

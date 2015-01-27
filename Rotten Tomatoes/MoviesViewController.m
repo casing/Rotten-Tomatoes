@@ -28,6 +28,7 @@ UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate>
 @property (nonatomic, strong) NSMutableArray *filteredMovies;
 @property (nonatomic, strong) UIRefreshControl *tableRefreshControl;
 @property (nonatomic, strong) UIRefreshControl *collectionRefreshControl;
+@property (weak, nonatomic) IBOutlet UILabel *networkErrorLabel;
 
 - (void)initMoviesData;
 - (void)updateMoviesData:(id)target WithSelector:(SEL)sel;
@@ -147,11 +148,13 @@ UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate>
 - (void)showNetworkError {
     
     self.networkErrorView.hidden = NO;
+    self.networkErrorLabel.hidden = NO;
 }
 
 - (void)hideNetworkError {
     
     self.networkErrorView.hidden = YES;
+    self.networkErrorLabel.hidden = YES;
 }
 
 - (NSUInteger)getMovieDataCount {
