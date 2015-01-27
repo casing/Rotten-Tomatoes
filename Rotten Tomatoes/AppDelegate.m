@@ -40,6 +40,8 @@
                                   dnvc, nil];
     
     [tbc setViewControllers:myViewControllers];
+    [tbc.tabBar setBarTintColor:[UIColor colorWithRed:122/255.0 green:171/255.0 blue:255/255.0 alpha:1.0]];
+
     
     self.window.rootViewController = tbc;
     [self.window makeKeyAndVisible];

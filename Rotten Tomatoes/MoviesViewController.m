@@ -55,6 +55,8 @@ UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate>
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:122/255.0 green:171/255.0 blue:255/255.0 alpha:1.0]];
+    
     self.filteredMovies = [[NSMutableArray alloc] init];
     
     // Tableview setup
