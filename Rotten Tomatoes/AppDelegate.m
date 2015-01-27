@@ -26,6 +26,7 @@
     mvc.title = BOX_OFFICE_TITLE;
     UINavigationController *mnvc = [[UINavigationController alloc] initWithRootViewController:mvc];
     mnvc.navigationBar.translucent = NO;
+    mnvc.tabBarItem.image = [UIImage imageNamed:@"BoxOffice.png"];
     
     // DVD ViewController
     MoviesViewController *dvc = [[MoviesViewController alloc] init];
@@ -33,6 +34,7 @@
     dvc.title = DVD_TITLE;
     UINavigationController *dnvc = [[UINavigationController alloc] initWithRootViewController:dvc];
     dnvc.navigationBar.translucent = NO;
+    dnvc.tabBarItem.image = [UIImage imageNamed:@"dvd.png"];
     
     //create an array of all view controllers that will represent the tab at the bottom
     NSArray *myViewControllers = [[NSArray alloc] initWithObjects:
