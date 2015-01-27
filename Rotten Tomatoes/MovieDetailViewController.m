@@ -9,11 +9,13 @@
 #import "MovieDetailViewController.h"
 #import "UIImageView+FadeNetworkImage.h"
 #import "Constants.h"
+#import "IconHelpers.h"
 
 @interface MovieDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *criticsScoreLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *criticsRatingView;
 @property (weak, nonatomic) IBOutlet UILabel *actorsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ratingsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
@@ -32,9 +34,9 @@
     self.scrollView.contentSize = CGSizeMake(320, 750);
     self.titleLabel.text = self.movie[KEY_TITLE];
     self.synopsisLabel.text = self.movie[KEY_SYNOPSIS];
-    self.descriptionLabel.text = [NSString stringWithFormat:@"%@%%, %@",
-                                  [self.movie valueForKeyPath:KEY_RATINGS_CRITICS_SCORE],
-                                  [self.movie valueForKeyPath:KEY_RATINGS_CRITICS_RATING]];
+    self.criticsScoreLabel.text = [NSString stringWithFormat:@"%@%%",
+                                  [self.movie valueForKeyPath:KEY_RATINGS_CRITICS_SCORE]];
+    [self.criticsRatingView setImage:[IconHelpers getRatingImage:[self.movie valueForKeyPath:KEY_RATINGS_CRITICS_RATING]]];
     self.actorsLabel.text = [self getAuthorsString:self.movie[KEY_ABRIDGED_CAST]];
     self.ratingsLabel.text = [NSString stringWithFormat:@"%@, %@ min", self.movie[KEY_MPAA_RATING], self.movie[KEY_RUNTIME]];
     self.releaseDateLabel.text = [NSString stringWithFormat:@"Released %@", [self.movie valueForKeyPath:KEY_RELEASE_DATES_THEATER]];

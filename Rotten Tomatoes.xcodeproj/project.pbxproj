@@ -30,6 +30,7 @@
 		3E3F4D501A70C4D1001AED8C /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3F4D4E1A70C4D1001AED8C /* MovieCell.xib */; };
 		3E3F4D541A70CDA3001AED8C /* MovieDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F4D521A70CDA3001AED8C /* MovieDetailViewController.m */; };
 		3E3F4D551A70CDA3001AED8C /* MovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3F4D531A70CDA3001AED8C /* MovieDetailViewController.xib */; };
+		3E5609921A774A1B00988F90 /* IconHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5609911A774A1B00988F90 /* IconHelpers.m */; };
 		3E7F23F11A7225D9009CD428 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F23F01A7225D9009CD428 /* Constants.m */; };
 		9D3C9AD6D56C0016DE0E6572 /* libPods-Rotten Tomatoes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8E01A5CBBABD8CD7D414DAA /* libPods-Rotten Tomatoes.a */; };
 /* End PBXBuildFile section */
@@ -79,6 +80,8 @@
 		3E3F4D511A70CDA3001AED8C /* MovieDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailViewController.h; sourceTree = "<group>"; };
 		3E3F4D521A70CDA3001AED8C /* MovieDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailViewController.m; sourceTree = "<group>"; };
 		3E3F4D531A70CDA3001AED8C /* MovieDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieDetailViewController.xib; sourceTree = "<group>"; };
+		3E5609901A774A1B00988F90 /* IconHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconHelpers.h; sourceTree = "<group>"; };
+		3E5609911A774A1B00988F90 /* IconHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconHelpers.m; sourceTree = "<group>"; };
 		3E7F23EF1A7225D9009CD428 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		3E7F23F01A7225D9009CD428 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		E8E01A5CBBABD8CD7D414DAA /* libPods-Rotten Tomatoes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Rotten Tomatoes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +171,8 @@
 				3E011B5D1A749A7B003B6DCB /* MovieCollectionCell.xib */,
 				3E248F551A74EAF800FBB334 /* UIImageView+FadeNetworkImage.h */,
 				3E248F561A74EAF800FBB334 /* UIImageView+FadeNetworkImage.m */,
+				3E5609901A774A1B00988F90 /* IconHelpers.h */,
+				3E5609911A774A1B00988F90 /* IconHelpers.m */,
 			);
 			path = "Rotten Tomatoes";
 			sourceTree = "<group>";
@@ -348,6 +353,7 @@
 			files = (
 				3E011B591A743512003B6DCB /* TabBarController.m in Sources */,
 				3E37C1A11A6F552D00BDA5C3 /* MoviesViewController.m in Sources */,
+				3E5609921A774A1B00988F90 /* IconHelpers.m in Sources */,
 				3E37C1751A6F539100BDA5C3 /* AppDelegate.m in Sources */,
 				3E3F4D541A70CDA3001AED8C /* MovieDetailViewController.m in Sources */,
 				3E248F571A74EAF800FBB334 /* UIImageView+FadeNetworkImage.m in Sources */,

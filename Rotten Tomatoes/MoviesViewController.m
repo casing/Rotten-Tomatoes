@@ -14,6 +14,7 @@
 #import "Constants.h"
 #import "SVProgressHUD.h"
 #import "MovieCollectionCell.h"
+#import "IconHelpers.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate,
 UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate>
@@ -198,9 +199,9 @@ UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate>
     NSDictionary *movie = [self getMovie:(int)indexPath.row];
     cell.titleLabel.text = movie[KEY_TITLE];
     cell.actorsLabel.text = [self getAuthorsString:movie[KEY_ABRIDGED_CAST]];
-    cell.criticsScoreLabel.text = [NSString stringWithFormat:@"%@%%, %@",
-                                   [movie valueForKeyPath:KEY_RATINGS_CRITICS_SCORE],
-                                   [movie valueForKeyPath:KEY_RATINGS_CRITICS_RATING]];
+    cell.criticsScoreLabel.text = [NSString stringWithFormat:@"%@%%",
+                                   [movie valueForKeyPath:KEY_RATINGS_CRITICS_SCORE]];
+    [cell.criticsRatingView setImage:[IconHelpers getRatingImage:[movie valueForKeyPath:KEY_RATINGS_CRITICS_RATING]]];
     cell.typeLabel.text = [NSString stringWithFormat:@"%@, %@ min", movie[KEY_MPAA_RATING], movie[KEY_RUNTIME]];
     cell.releaseDateLabel.text = [NSString stringWithFormat:@"Released %@",[movie valueForKeyPath:KEY_RELEASE_DATES_THEATER]];
     [cell.posterView setImageWithURL:[NSURL URLWithString:[movie valueForKeyPath:KEY_POSTERS_THUMBNAIL]]
@@ -225,8 +226,10 @@ UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate>
    
     NSDictionary *movie = [self getMovie:(int)indexPath.row];
     cell.titleLabel.text = movie[KEY_TITLE];
-    cell.descriptionLabel.text = [NSString stringWithFormat:@"%@ %@ min %@%%",
-                                  movie[KEY_MPAA_RATING], movie[KEY_RUNTIME], [movie valueForKeyPath:KEY_RATINGS_CRITICS_SCORE]];
+    cell.descriptionLabel.text = [NSString stringWithFormat:@"%@ %@ min",
+                                  movie[KEY_MPAA_RATING], movie[KEY_RUNTIME]];
+    cell.criticsScoreLabel.text = [NSString stringWithFormat:@"%@%%", [movie valueForKeyPath:KEY_RATINGS_CRITICS_SCORE]];
+    [cell.criticsRatingView setImage:[IconHelpers getRatingImage:[movie valueForKeyPath:KEY_RATINGS_CRITICS_RATING]]];
     NSString *imageUrl = [movie valueForKeyPath:KEY_POSTERS_THUMBNAIL];
     NSRange lastTmb = [imageUrl rangeOfString:@"_tmb" options:NSBackwardsSearch];
     [cell.posterView setImageWithURL:[NSURL URLWithString:[imageUrl stringByReplacingCharactersInRange:lastTmb withString:@"_ori"]]

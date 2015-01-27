@@ -8,7 +8,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieDetailViewController">
             <connections>
                 <outlet property="actorsLabel" destination="IZ5-Of-vDL" id="Q44-Pu-25c"/>
-                <outlet property="descriptionLabel" destination="gdF-oj-5jM" id="XZc-VP-v2v"/>
+                <outlet property="criticsRatingView" destination="ezz-tH-Oee" id="cXF-Aw-maT"/>
+                <outlet property="criticsScoreLabel" destination="gdF-oj-5jM" id="OZd-0L-3Ar"/>
                 <outlet property="detailView" destination="TgW-Ik-kJj" id="hiM-3r-eJP"/>
                 <outlet property="ratingsLabel" destination="6Tn-Fj-dnH" id="fjM-Ya-Y0I"/>
                 <outlet property="releaseDateLabel" destination="57k-Hl-pJk" id="C64-Wa-qcc"/>
@@ -46,8 +47,8 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10%, Rotten" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gdF-oj-5jM">
-                            <rect key="frame" x="23" y="60" width="291" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gdF-oj-5jM">
+                            <rect key="frame" x="44" y="60" width="31" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -74,6 +75,10 @@
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ezz-tH-Oee">
+                            <rect key="frame" x="24" y="62" width="18" height="18"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </scrollView>

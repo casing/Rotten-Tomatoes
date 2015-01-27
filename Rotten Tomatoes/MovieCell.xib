@@ -25,8 +25,8 @@
                         <rect key="frame" x="8" y="8" width="54" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="73%, Certified Fresh" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KqF-rj-cfW">
-                        <rect key="frame" x="70" y="30" width="224" height="13"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="73%" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KqF-rj-cfW">
+                        <rect key="frame" x="93" y="30" width="29" height="13"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -53,10 +53,15 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="FhC-E8-pOa">
+                        <rect key="frame" x="70" y="30" width="15" height="13"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="actorsLabel" destination="UKG-Vo-NEe" id="F6X-Sq-DJg"/>
+                <outlet property="criticsRatingView" destination="FhC-E8-pOa" id="mPJ-wt-wCB"/>
                 <outlet property="criticsScoreLabel" destination="KqF-rj-cfW" id="uNb-cR-gsu"/>
                 <outlet property="posterView" destination="Y1D-wU-TqL" id="WCi-Dc-TmI"/>
                 <outlet property="releaseDateLabel" destination="ebp-dd-BaR" id="nah-Dy-Pnh"/>
