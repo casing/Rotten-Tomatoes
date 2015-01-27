@@ -189,7 +189,7 @@ UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate>
 
 - (void)goToDetailsPage:(int)index {
     MovieDetailViewController *vc = [[MovieDetailViewController alloc] init];
-    vc.movie = self.movies[index];
+    vc.movie = [self getMovie:(int)index];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
